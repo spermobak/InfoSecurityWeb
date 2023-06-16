@@ -1,0 +1,15 @@
+<button (click)="openWindow()" style="width:auto;">Login</button>
+
+<div id="login_window" class="modal" [style.display]="isRegistrationWindowVisible ? 'block' : 'none'">
+  <span class="close" (click)="closeWindow()" title="Close Modal">&times;</span>
+
+  <form class="modal-content animate" *ngIf="!isLoginFormVisible; else loginFormSection">
+
+      <app-registartion></app-registartion>
+    
+  </form>
+
+  <ng-template #loginFormSection>
+    <app-login></app-login>
+  </ng-template>
+</div>

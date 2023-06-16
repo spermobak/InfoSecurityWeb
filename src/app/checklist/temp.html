@@ -1,0 +1,398 @@
+<div class="header">
+  <h1>Сбор данных по результатам анкетирования</h1>
+</div> 
+
+<nav class="hover-underline-menu" data-menu-underline-from-center>
+  <ul class="menu align-center">
+    <li><a routerLink="/">Анкетный бланк</a></li>
+    <li><a routerLink="/search">Поиск</a></li>
+  </ul>
+</nav>
+
+
+  
+  <div class="form">
+    <div class="form-left">
+      <ul class="form-nav">
+        <li><a routerLink="/company-info" routerLinkActive="active">Информация о компании</a></li>
+        <li><a routerLink="/num-of-responsible" routerLinkActive="active">Сколько человек отвечает за ИБ</a></li>
+        <li><a routerLink="/responsible-for-is" routerLinkActive="active">Назначен ли ответственный за защиту</a></li>
+        <li><a routerLink="/address" routerLinkActive="active">Укажите адреса объектов</a></li>
+        <li><a routerLink="/business-processes" routerLinkActive="active">Определены ли бизнес процессы?</a></li>
+        <li><a routerLink="/count-of-subjects" routerLinkActive="active">Количество субъектов чьи ПНд обрабатываются</a>
+        </li>
+        <li><a routerLink="/pnd-categories" routerLinkActive="active">Какие категории ПНд обрабатываются организацией?</a>
+        </li>
+        <li><a routerLink="/pnd-subjects" routerLinkActive="active">ПНд каких субъектов обрабатывает организация?</a></li>
+        <li><a routerLink="/list-is" routerLinkActive="active">Список информационных систем, обрабатывающих ПНд</a></li>
+        <li><a routerLink="/abroad-is" routerLinkActive="active">Какие из перечисленных ИС находятся за границей</a></li>
+        <li><a routerLink="/numb-of-servers" routerLinkActive="active">Количество серверов, на которых обрабатываются
+            ПНд</a></li>
+        <li><a routerLink="/numb-of-aws" routerLinkActive="active">Количество автоматизированных рабочих мест(АРМ), на
+            которых осуществляется обработка ПНд</a></li>
+        <li><a routerLink="/protective-equipment" routerLinkActive="active">Средства защиты инфрмации, применяемые для
+            обеспечения безопасности ПНд</a></li>
+        <li><a routerLink="/cist" routerLinkActive="active">Используется ли СКЗИ для защиты</a></li>
+        <li><a routerLink="/risk-model" routerLinkActive="active">Действует ли в организации модель угроз</a></li>
+        <li><a routerLink="/processing-policy" routerLinkActive="active">Введена ли в действие политика обработки ПНд,
+            политика защиты ПНд</a></li>
+        <li><a routerLink="/other-documentation" routerLinkActive="active">Действует ли в организации иная
+            организационно-распределительная документация в направлении защиты ПНд?</a></li>
+        <li><a routerLink="/security-level" routerLinkActive="active">Определен ли уровень защищенности ПНд в
+            информационных системах</a></li>
+        <li><a routerLink="/documentation_level" routerLinkActive="active">Оцените степень документирования процесса
+            защиты ПНд (ИТ и ИБ)</a></li>
+        <input type="button" value="Отправить" (click)="submitForm()" />
+      </ul>
+    </div>
+    <div class="form-right">
+      <form [formGroup]="myForm">
+        <section id="company_ifo" class="form-section active">
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="name_org">Наименование организации</label>
+              <input type="text" id="name_org" formControlName="name_org" placeholder="Наименование" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="contact_person">Контактное лицо</label>
+              <input type="text" id="contact_person" formControlName="contact_person" placeholder="ФИО" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="phone">Номер телефона</label>
+              <input type="tel" id="phone" formControlName="phone" placeholder="Телефон" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="email">Email</label>
+              <input type="email" id="email" formControlName="email" placeholder="Email" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="url">Ссылка на сайт</label>
+              <input type="url" id="url" formControlName="url" placeholder="URL" required />
+            </div>
+          </div>
+        </section>
+        <section id="numb_of_responsible_for_is" class="form-section">
+          <div class="row">
+            <input type="number" id="numb_of_responsible_for_is" formControlName="numb_of_responsible_for_is"
+              placeholder="Укажите число" min="0" required [(ngModel)]="numberOfResponsibleForIS" />
+          </div>
+        </section>
+        <section id="responsible_for_is" class="form-section">
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 medium-6 cell">
+              <label>Назначен ли ответственный за защиту</label>
+              <input type="radio" formControlName="switch" value="yes" id="switch_rfi_yes" required
+                [(ngModel)]="responsibleForIS" />
+              <label for="switch_rfi_yes">Да</label>
+              <input type="radio" formControlName="switch" value="no" id="switch_a_no" [(ngModel)]="responsibleForIS" />
+              <label for="switch_a_no">Нет</label>
+            </div>
+          </div>
+        </section>
+  
+        <section id="address" class="form-section">
+          <div>
+            <input type="text" class="answer-input" placeholder="Введите адрес" required [(ngModel)]="addressInput" />
+            <button (click)="addAnswer('address')">Добавить</button>
+          </div>
+          <ul class="answer-list">
+            <li *ngFor="let address of addresses">{{ address }}</li>
+          </ul>
+        </section>
+  
+        <section id="pnd_categories" class="form-section">
+          <div class="row">
+            <div class="small-12 columns">
+              <input id="free_info" formControlName="free_info" type="checkbox" required [(ngModel)]="formData.free_info">
+              <label for="free_info">Общедоступная информация (персональные данные, находящиеся в общедоступных
+                источниках)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <input id="biometric" formControlName="biometric" type="checkbox" [(ngModel)]="formData.biometric">
+              <label for="biometric">Биометрические (внешность, голос)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <input id="special" formControlName="special" type="checkbox" [(ngModel)]="formData.special">
+              <label for="special">Специальные (расса, национальность, политические взгляды, состояние здоровья)</label>
+            </div>
+          </div>
+        </section>
+  
+        <section id="buisness_processes" class="form-section">
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 medium-6 cell">
+              <label>Определены ли бизнес процессы в организации, которые задействованы в обработке ПНд?</label>
+              <input type="radio" formControlName="switch_bp" value="yes" id="switch_bp_yes"
+                [(ngModel)]="formData.switch_bp" (change)="showField('switch_bp_yes', 'buisness-field')">
+              <label for="switch_bp_yes">Да</label>
+              <input type="radio" formControlName="switch_bp" value="no" id="switch_bp_no"
+                [(ngModel)]="formData.switch_bp" (change)="hideField('switch_bp_yes', 'buisness-field')">
+              <label for="switch_bp_no">Нет</label>
+            </div>
+          </div>
+  
+          <div id="buisness-field" [style.display]="formData.switch_bp === 'yes' ? 'block' : 'none'">
+            <div>
+              <input type="text" class="answer-input" placeholder="Введите бизнес процесс"
+                [(ngModel)]="businessProcessInput">
+              <button (click)="addAnswer('buisness_processes')">Добавить</button>
+            </div>
+            <ul class="answer-list">
+              <li *ngFor="let process of businessProcesses">{{ process }}</li>
+            </ul>
+          </div>
+        </section>
+  
+        <section id="count_of_subject" class="form-section">
+          <div class="row">
+            <input type="number" id="count_of_employee" formControlName="count_of_employee"
+              placeholder="Количество сотрудников" min="0" required [(ngModel)]="formData.count_of_employee">
+          </div>
+          <div class="row">
+            <input type="number" id="count_of_client" formControlName="count_of_client" placeholder="Количество клиентов"
+              min="0" required [(ngModel)]="formData.count_of_client">
+          </div>
+        </section>
+  
+        <section id="pnd_subjects" class="form-section">
+          <div class="row">
+            <div class="small-12 columns">
+              <input id="company_employees" formControlName="company_employees" type="checkbox" required
+                [(ngModel)]="formData.company_employees">
+              <label for="company_employees">Сотрудники организации</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <input id="company_clients" formControlName="company_clients" type="checkbox"
+                [(ngModel)]="formData.company_clients">
+              <label for="company_clients">Клиенты/контрагенты организации (лица, с которыми заключен договор ГПХ)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <input id="other" formControlName="other" type="checkbox" [(ngModel)]="formData.other">
+              <label for="other">Третьи лица</label>
+            </div>
+          </div>
+        </section>
+  
+        <section id="list_is" class="form-section">
+          <div>
+            <input type="text" class="answer-input" placeholder="Введите информационную систему" required
+              [(ngModel)]="informationSystemInput">
+            <button (click)="addAnswer('list_is')">Добавить</button>
+          </div>
+          <ul class="answer-list">
+            <li *ngFor="let system of informationSystemInput">{{ system }}</li>
+          </ul>
+        </section>
+  
+        <section id="is_foregin" class="form-section">
+          <p><label>Отметьте те информационные системы, которые находятся за границей</label></p>
+          <ul id="is_answer_list" class="answer-list">
+            <li *ngFor="let system of foreignSystems">
+              <input type="checkbox" [id]="'system_' + system" [formControlName]="'system_' + system"
+                [(ngModel)]="formData['system_' + system]">
+              <label [for]="'system_' + system">{{ system }}</label>
+            </li>
+          </ul>
+        </section>
+  
+  
+        <section id="numb_of_servers" class="form-section">
+          <div class="row">
+            <input type="number" id="numb_of_servers" formControlName="numb_of_servers" placeholder="Укажите число"
+              min="0" required [(ngModel)]="formData.numb_of_servers">
+          </div>
+        </section>
+  
+        <section id="numb_of_aws" class="form-section">
+          <div class="row">
+            <input type="number" id="numb_of_aws" formControlName="numb_of_aws" placeholder="Укажите число" min="0"
+              required [(ngModel)]="formData.numb_of_aws">
+          </div>
+        </section>
+  
+        <section id="protective_equipment" class="form-section">
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="antivirus">Антивирусное программное обеспечение</label>
+              <textarea id="antivirus" formControlName="antivirus" placeholder="Через запятую" style="height: auto;"
+                rows="2" required [(ngModel)]="formData.antivirus"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="againstUnauthorizedAccess">Средства защиты от несанкционированного доступа</label>
+              <textarea id="againstUnauthorizedAccess" formControlName="againstUnauthorizedAccess"
+                placeholder="Через запятую" style="height: auto;" rows="2" required
+                [(ngModel)]="formData.againstUnauthorizedAccess"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="nterNetworkShielding">Средства межсетевого экранирования</label>
+              <textarea id="nterNetworkShielding" formControlName="nterNetworkShielding" placeholder="Через запятую"
+                style="height: auto;" rows="2" required [(ngModel)]="formData.nterNetworkShielding"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="siem">Средства мониторинга и анализа событий защиты информации (SIEM)</label>
+              <textarea id="siem" formControlName="siem" placeholder="Через запятую" style="height: auto;" rows="2"
+                required [(ngModel)]="formData.siem"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="dlp">Средства предотвращения утечек информации (DLP)</label>
+              <textarea id="dlp" formControlName="dlp" placeholder="Через запятую" style="height: auto;" rows="2" required
+                [(ngModel)]="formData.dlp"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="crypto">Средства криптографической защиты информации</label>
+              <textarea id="crypto" formControlName="crypto" placeholder="Через запятую" style="height: auto;" rows="2"
+                required [(ngModel)]="formData.crypto"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="securityMonitoringTool">Средство контроля защищенности</label>
+              <textarea id="securityMonitoringTool" formControlName="securityMonitoringTool" placeholder="Через запятую"
+                style="height: auto;" rows="2" required [(ngModel)]="formData.securityMonitoringTool"></textarea>
+            </div>
+          </div>
+        </section>
+  
+        <section id="cist" class="form-section">
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 medium-6 cell">
+              <label>Используется ли СКЗИ для защиты</label>
+              <input type="radio" formControlName="switch_c" value="yes" id="switch_c_yes" required
+                [(ngModel)]="formData.switch_c">
+              <label for="switch_c_yes">Да</label>
+              <input type="radio" formControlName="switch_c" value="no" id="switch_c_no">
+              <label for="switch_c_no">Нет</label>
+            </div>
+          </div>
+        </section>
+  
+        <section id="risk_model" class="form-section">
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 medium-6 cell">
+              <label>Действует ли в организации модель угроз</label>
+              <input type="radio" formControlName="switch_rm" value="yes" id="switch_rm_yes" required
+                [(ngModel)]="formData.switch_rm">
+              <label for="switch_rm_yes">Да</label>
+              <input type="radio" formControlName="switch_rm" value="no" id="switch_rm_no">
+              <label for="switch_rm_no">Нет</label>
+            </div>
+          </div>
+        </section>
+  
+        <section id="processing_policy" class="form-section">
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 medium-6 cell">
+              <label>Введена ли в действие политика обработки ПНд, политика защиты ПНд</label>
+              <input type="radio" formControlName="switch_pp" value="yes" id="switch_pp_yes" required
+                [(ngModel)]="formData.switch_pp">
+              <label for="switch_pp_yes">Да</label>
+              <input type="radio" formControlName="switch_pp" value="no" id="switch_pp_no">
+              <label for="switch_pp_no">Нет</label>
+            </div>
+          </div>
+        </section>
+        <section id="other_documentation" class="form-section">
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 medium-6 cell">
+              <label>Действует ли в организации иная организационно-распределительная документация в направлении защиты
+                ПНд</label>
+              <div>
+                <input type="radio" formControlName="switch_od" value="yes" id="switch_od_yes"
+                  (click)="showField('switch_od_yes', 'od-field')" required>
+                <label for="switch_od_yes">Да</label>
+              </div>
+              <div>
+                <input type="radio" formControlName="switch_od" value="no" id="switch_od_no"
+                  (click)="hideField('switch_od_yes', 'od-field')">
+                <label for="switch_od_no">Нет</label>
+              </div>
+            </div>
+          </div>
+  
+          <div id="od-field" [style.display]="formData.switch_od === 'yes' ? 'block' : 'none'">
+            <div>
+              <input type="text" class="answer-input" placeholder="Введите бизнес процесс"
+                [(ngModel)]="businessProcessInput">
+              <button (click)="addAnswer('other_documentation')">Добавить</button>
+            </div>
+            <ul class="answer-list">
+              <li *ngFor="let process of businessProcesses">{{ process }}</li>
+            </ul>
+          </div>
+        </section>
+  
+        <section id="security_level" class="form-section">
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 medium-6 cell">
+              <label>Определен ли уровень защищенности ПНд в информационных системах</label>
+              <div>
+                <input type="radio" formControlName="switch_sl" value="yes" id="switch_sl_yes"
+                  [(ngModel)]="formData.switch_sl" required>
+                <label for="switch_sl_yes">Да</label>
+              </div>
+              <div>
+                <input type="radio" formControlName="switch_sl" value="no" id="switch_sl_no"
+                  [(ngModel)]="formData.switch_sl">
+                <label for="switch_sl_no">Нет</label>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+        <section id="documentation_level" class="form-section">
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="range_input">Оцените степень документирования процесса защиты ПНд (ИБ и ИТ)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-4 columns">
+              <input type="range" id="range_input" min="0" max="10" formControlName="range_input"
+                [(ngModel)]="formData.range_input" required>
+            </div>
+            <div class="small-8 columns">
+              <output id="range_output" formControlName="range_output" for="range_input">{{ formData.range_input
+                }}</output>
+            </div>
+          </div>
+        </section>
+  
+        <div class="navigation-arrows">
+          <div class="left-arrow">
+            <input type="button" value="Назад" (click)="navigate('back')" />
+          </div>
+          <div class="right-arrow">
+            <input type="button" value="Вперёд" (click)="navigate('forward')" />
+          </div>
+        </div>
+  
+  
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,18 @@
+<form class="modal-content animate" [formGroup]="loginForm" (ngSubmit)="submitForm()" *ngIf="!loginWindowVisible; else registrationFormSection">
+  <div class="login-box">
+    <div class="small-12 medium-6 column small-order-2 medium-order-1">
+      <div class="login-box-form-section">
+        <h1 class="login-box-title">Login</h1>
+        <input class="login-box-input" type="email" name="email" placeholder="E-mail" formControlName="email" />
+        <input class="login-box-input" type="password" name="password" placeholder="Password" formControlName="password" />
+        <button class="login-box-submit-button" type="submit" name="login_submit">Login</button>
+        <button class="login-box-submit-button" (click)="switchToRegistrationForm()">Sign me up</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<ng-template #registrationFormSection>
+  <app-registartion></app-registartion>
+</ng-template>
