@@ -1,19 +1,30 @@
 mat-sidenav {
-	margin: 16px;
-	width: 200px;
+	width: 250px;
 	border-right: none;
-	background: #002b5c;
+	background: #1779ba;
 	color: white;
-	border-radius: 10px;
-	padding: 16px;
-	text-align: center;
+	text-align: left;
+  
+	a.mat-list-item {
+	  color: white;
+	  text-decoration: none;
+	  display: block;
+	  margin-bottom: 8px;
+	  font-size: 1rem;
+  
+	  &:hover {
+		background-color: #003b7c;
+	  }
+  
+	  &.active {
+		background-color: #003b7c;
+		font-weight: bold;
+	  }
+	}
   }
   
   .content {
 	height: calc(100vh - 98px);
-	border-radius: 10px;
-	margin: 16px;
-	margin-left: 32px;
   
 	display: flex;
 	justify-content: center;
@@ -26,3 +37,4 @@ mat-sidenav {
   mat-sidenav-container {
 	height: calc(100vh - 65px);
   }
+  

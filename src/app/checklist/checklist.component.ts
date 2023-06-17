@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BreakpointObserver} from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
 
 function booleanification(value: string): boolean {
   return value === 'on';
@@ -13,6 +15,8 @@ function booleanification(value: string): boolean {
   styleUrls: ['./checklist.component.scss']
 })
 export class ChecklistComponent {
+  @ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
   formData: any;
   businessProcesses: string[] = [];
   sections: string[] = [
@@ -29,11 +33,14 @@ export class ChecklistComponent {
   informationSystemInput: string = '';
   addresses: string[] = [];
   foreignSystems: string[] = [];
+ 
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) {
+  constructor(private cdr: ChangeDetectorRef, private observer: BreakpointObserver, private router: Router, private http: HttpClient, private formBuilder: FormBuilder) {
     this.formData = {
       // ...
     };
+
+    
 
     this.myForm = this.formBuilder.group({
       name_org: ['', Validators.required],
@@ -88,6 +95,31 @@ export class ChecklistComponent {
 
     if (element && field) {
       field.style.display = element.value ? 'block' : 'none';
+    }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.observeSidenav();
+    }, 0);
+  }
+
+  observeSidenav() {
+    const mediaQuery = window.matchMedia('(max-width: 800px)');
+    mediaQuery.addEventListener('change', (event) => {
+      this.handleMediaQueryChange(event.matches);
+      this.cdr.detectChanges();
+    });
+    this.handleMediaQueryChange(mediaQuery.matches);
+  }
+
+  handleMediaQueryChange(matches: boolean) {
+    if (matches) {
+      this.sidenav.mode = 'over';
+      this.sidenav.close();
+    } else {
+      this.sidenav.mode = 'side';
+      this.sidenav.open();
     }
   }
 

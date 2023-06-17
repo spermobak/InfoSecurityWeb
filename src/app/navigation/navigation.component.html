@@ -1,14 +1,12 @@
 <mat-toolbar color="primary">
+  <button mat-icon-button *ngIf="isChecklistPage && sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
   <div>
-    <button mat-icon-button>
-      <mat-icon class="mat-18">menu</mat-icon>
-    </button>
+    <ul class="nav-items">
+      <li><a routerLink="/checklist">Checklist</a></li>
+      <li><a routerLink="/search">Search</a></li>
+    </ul>
   </div>
-    <div><a routerLink="/">InfoSecurity</a></div>
-    <div>
-      <ul class="nav-items">
-        <li><a routerLink="/checklist">Checklist</a></li>
-        <li><a routerLink="/products">Products</a></li>
-      </ul>
-    </div>
-  </mat-toolbar>
+</mat-toolbar>
