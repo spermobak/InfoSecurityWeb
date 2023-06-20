@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  scrollOffset: [0, 64],
+};
 
 const routes: Routes = [
   {
@@ -25,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

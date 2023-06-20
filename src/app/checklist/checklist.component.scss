@@ -4,37 +4,71 @@ mat-sidenav {
 	background: #1779ba;
 	color: white;
 	text-align: left;
-  
+
 	a.mat-list-item {
-	  color: white;
-	  text-decoration: none;
-	  display: block;
-	  margin-bottom: 8px;
-	  font-size: 1rem;
-  
-	  &:hover {
-		background-color: #003b7c;
-	  }
-  
-	  &.active {
-		background-color: #003b7c;
-		font-weight: bold;
-	  }
+		color: white;
+		text-decoration: none;
+		display: block;
+		margin-bottom: 8px;
+		font-size: 1rem;
+
+		&:hover {
+			background-color: #003b7c;
+		}
+
+		&.active {
+			background-color: #003b7c;
+			font-weight: bold;
+		}
 	}
-  }
-  
-  .content {
-	height: calc(100vh - 98px);
-  
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  
-	font-size: 2rem;
-	color: lightgray;
-  }
-  
-  mat-sidenav-container {
+}
+
+// .content {
+// 	height: calc(100vh - 98px);
+
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+
+// 	font-size: 2rem;
+// 	color: lightgray;
+// }
+
+.form-section {
+	display: none;
+	margin-bottom: 20px;
+}
+
+.form-section.active {
+	display: block;
+	margin-left: 0px;
+	padding: 25px;
+	border: 1px solid #ccc;
+	border-radius: 9px;
+	box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"] {
+	width: 94%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+textarea {
+	width: 94%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+mat-sidenav-container {
 	height: calc(100vh - 65px);
-  }
-  
+}

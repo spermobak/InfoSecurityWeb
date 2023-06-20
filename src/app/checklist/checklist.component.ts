@@ -50,6 +50,7 @@ export class ChecklistComponent {
       url: [''],
       free_info: [false],
       biometric: [false],
+      numb_of_responsible_for_is: ['', Validators.required],
       special: [false],
       switch_bp: [''],
       buisnessProcesses: this.formBuilder.array([]),

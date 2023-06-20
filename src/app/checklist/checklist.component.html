@@ -12,38 +12,29 @@
 <mat-sidenav-container>
   <mat-sidenav mode="side" opened>
     <mat-nav-list>
-      <a mat-list-item routerLink="/company-info" routerLinkActive="active">Информация о компании</a>
-      <a mat-list-item routerLink="/num-of-responsible" routerLinkActive="active">Сколько человек отвечает за ИБ</a>
-      <a mat-list-item routerLink="/responsible-for-is" routerLinkActive="active">Назначен ли ответственный за защиту</a>
-      <a mat-list-item routerLink="/address" routerLinkActive="active">Укажите адреса объектов</a>
-      <a mat-list-item routerLink="/business-processes" routerLinkActive="active">Определены ли бизнес процессы?</a>
-      <a mat-list-item routerLink="/count-of-subjects" routerLinkActive="active">Количество субъектов чьи ПНд обрабатываются</a>
-      <a mat-list-item routerLink="/pnd-categories" routerLinkActive="active">Какие категории ПНд обрабатываются организацией?</a>
-      <a mat-list-item routerLink="/pnd-subjects" routerLinkActive="active">ПНд каких субъектов обрабатывает организация?</a>
-      <a mat-list-item routerLink="/list-is" routerLinkActive="active">Список информационных систем, обрабатывающих ПНд</a>
-      <a mat-list-item routerLink="/abroad-is" routerLinkActive="active">Какие из перечисленных ИС находятся за границей</a>
-      <a mat-list-item routerLink="/numb-of-servers" routerLinkActive="active">Количество серверов, на которых обрабатываются ПНд</a>
-      <a mat-list-item routerLink="/numb-of-aws" routerLinkActive="active">Количество автоматизированных рабочих мест(АРМ), на которых осуществляется обработка ПНд</a>
-      <a mat-list-item routerLink="/protective-equipment" routerLinkActive="active">Средства защиты информации, применяемые для обеспечения безопасности ПНд</a>
-      <a mat-list-item routerLink="/cist" routerLinkActive="active">Используется ли СКЗИ для защиты</a>
-      <a mat-list-item routerLink="/risk-model" routerLinkActive="active">Действует ли в организации модель угроз</a>
-      <a mat-list-item routerLink="/processing-policy" routerLinkActive="active">Введена ли в действие политика обработки ПНд, политика защиты ПНд</a>
-      <a mat-list-item routerLink="/other-documentation" routerLinkActive="active">Действует ли в организации иная организационно-распределительная документация в направлении защиты ПНд?</a>
-      <a mat-list-item routerLink="/security-level" routerLinkActive="active">Определен ли уровень защищенности ПНд в информационных системах</a>
-      <a mat-list-item routerLink="/documentation_level" routerLinkActive="active">Оцените степень документирования процесса защиты ПНд (ИТ и ИБ)</a>
+      <a mat-list-item [routerLink]='"."' fragment="company-ifo">Информация о компании</a>
+      <a mat-list-item [routerLink]='"."' fragment="numb-of-responsible">Сколько человек отвечает за ИБ</a>
+      <a mat-list-item [routerLink]='"."' fragment="responsible-for-is">Назначен ли ответственный за защиту</a>
+      <a mat-list-item [routerLink]='"."' fragment="address">Укажите адреса объектов</a>
+      <a mat-list-item [routerLink]='"."' fragment="buisness-processes">Определены ли бизнес процессы?</a>
+      <a mat-list-item [routerLink]='"."' fragment="count-of-subject">Количество субъектов чьи ПНд обрабатываются</a>
+      <a mat-list-item [routerLink]='"."' fragment="pnd-categories">Какие категории ПНд обрабатываются организацией?</a>
+      <a mat-list-item [routerLink]='"."' fragment="pnd-subjects">ПНд каких субъектов обрабатывает организация?</a>
+      <a mat-list-item [routerLink]='"."' fragment="list-is">Список информационных систем, обрабатывающих ПНд</a>
+      <a mat-list-item [routerLink]='"."' fragment="abroad-is">Какие из перечисленных ИС находятся за границей</a>
+      <a mat-list-item [routerLink]='"."' fragment="numb-of-servers">Количество серверов, на которых обрабатываются ПНд</a>
+      <a mat-list-item [routerLink]='"."' fragment="numb-of-aws">Количество автоматизированных рабочих мест(АРМ), на которых осуществляется обработка ПНд</a>
+      <a mat-list-item [routerLink]='"."' fragment="protective-equipment">Средства защиты информации, применяемые для обеспечения безопасности ПНд</a>
+      <a mat-list-item [routerLink]='"."' fragment="cist">Используется ли СКЗИ для защиты</a>
+      <a mat-list-item [routerLink]='"."' fragment="risk-model">Действует ли в организации модель угроз</a>
+      <a mat-list-item [routerLink]='"."' fragment="processing-policy">Введена ли в действие политика обработки ПНд, политика защиты ПНд</a>
     </mat-nav-list>
   </mat-sidenav>
   
 
   <mat-sidenav-content>
-    <div class="content mat-elevation-z8">Main content here!</div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-<!-- <div class="form">
-  <div class="form-right">
-    <form [formGroup]="myForm">
-      <section id="company_ifo" class="form-section active">
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+      <section id="company-ifo" class="form-section active">
         <div class="row">
           <div class="small-12 columns">
             <label for="name_org">Наименование организации</label>
@@ -75,13 +66,18 @@
           </div>
         </div>
       </section>
-      <section id="numb_of_responsible_for_is" class="form-section">
+    
+     <section id="numb-of-responsible" class="form-section">
         <div class="row">
-          <input type="number" id="numb_of_responsible_for_is" formControlName="numb_of_responsible_for_is"
-            placeholder="Укажите число" min="0" required [(ngModel)]="numberOfResponsibleForIS" />
+          <div class="small-12 columns">
+            <label for="numb_of_responsible_for_is">Сколько человек отвечает за информационную безопасность?</label>
+            <input type="number" id="numb_of_responsible_for_is" formControlName="numb_of_responsible_for_is"
+              placeholder="Укажите число" min="0" required />
+          </div>
         </div>
       </section>
-      <section id="responsible_for_is" class="form-section">
+      
+       <!-- <section id="responsible-for-is" class="form-section">
         <div class="grid-x grid-padding-x">
           <div class="large-6 medium-6 cell">
             <label>Назначен ли ответственный за защиту</label>
@@ -92,7 +88,7 @@
             <label for="switch_a_no">Нет</label>
           </div>
         </div>
-      </section>
+      </section> -->
 
       <section id="address" class="form-section">
         <div>
@@ -104,7 +100,7 @@
         </ul>
       </section>
 
-      <section id="pnd_categories" class="form-section">
+      <section id="pnd-categories" class="form-section">
         <div class="row">
           <div class="small-12 columns">
             <input id="free_info" formControlName="free_info" type="checkbox" required [(ngModel)]="formData.free_info">
@@ -126,7 +122,7 @@
         </div>
       </section>
 
-      <section id="buisness_processes" class="form-section">
+      <!-- <section id="buisness-processes" class="form-section">
         <div class="grid-x grid-padding-x">
           <div class="large-6 medium-6 cell">
             <label>Определены ли бизнес процессы в организации, которые задействованы в обработке ПНд?</label>
@@ -149,9 +145,9 @@
             <li *ngFor="let process of businessProcesses">{{ process }}</li>
           </ul>
         </div>
-      </section>
+      </section> -->
 
-      <section id="count_of_subject" class="form-section">
+      <section id="count-of-subject" class="form-section">
         <div class="row">
           <input type="number" id="count_of_employee" formControlName="count_of_employee"
             placeholder="Количество сотрудников" min="0" required [(ngModel)]="formData.count_of_employee">
@@ -162,7 +158,7 @@
         </div>
       </section>
 
-      <section id="pnd_subjects" class="form-section">
+      <section id="pnd-subjects" class="form-section">
         <div class="row">
           <div class="small-12 columns">
             <input id="company_employees" formControlName="company_employees" type="checkbox" required
@@ -185,7 +181,7 @@
         </div>
       </section>
 
-      <section id="list_is" class="form-section">
+       <!--<section id="list-is" class="form-section">
         <div>
           <input type="text" class="answer-input" placeholder="Введите информационную систему" required
             [(ngModel)]="informationSystemInput">
@@ -194,9 +190,9 @@
         <ul class="answer-list">
           <li *ngFor="let system of informationSystemInput">{{ system }}</li>
         </ul>
-      </section>
+      </section> -->
 
-      <section id="is_foregin" class="form-section">
+      <section id="is-foregin" class="form-section">
         <p><label>Отметьте те информационные системы, которые находятся за границей</label></p>
         <ul id="is_answer_list" class="answer-list">
           <li *ngFor="let system of foreignSystems">
@@ -208,21 +204,21 @@
       </section>
 
 
-      <section id="numb_of_servers" class="form-section">
+       <!--<section id="numb-of-servers" class="form-section">
         <div class="row">
           <input type="number" id="numb_of_servers" formControlName="numb_of_servers" placeholder="Укажите число"
             min="0" required [(ngModel)]="formData.numb_of_servers">
         </div>
       </section>
 
-      <section id="numb_of_aws" class="form-section">
+      <section id="numb-of-aws" class="form-section">
         <div class="row">
           <input type="number" id="numb_of_aws" formControlName="numb_of_aws" placeholder="Укажите число" min="0"
             required [(ngModel)]="formData.numb_of_aws">
         </div>
       </section>
 
-      <section id="protective_equipment" class="form-section">
+      <section id="protective-equipment" class="form-section">
         <div class="row">
           <div class="small-12 columns">
             <label for="antivirus">Антивирусное программное обеспечение</label>
@@ -288,7 +284,7 @@
         </div>
       </section>
 
-      <section id="risk_model" class="form-section">
+      <section id="risk-model" class="form-section">
         <div class="grid-x grid-padding-x">
           <div class="large-6 medium-6 cell">
             <label>Действует ли в организации модель угроз</label>
@@ -301,7 +297,7 @@
         </div>
       </section>
 
-      <section id="processing_policy" class="form-section">
+      <section id="processing-policy" class="form-section">
         <div class="grid-x grid-padding-x">
           <div class="large-6 medium-6 cell">
             <label>Введена ли в действие политика обработки ПНд, политика защиты ПНд</label>
@@ -313,6 +309,7 @@
           </div>
         </div>
       </section>
+
       <section id="other_documentation" class="form-section">
         <div class="grid-x grid-padding-x">
           <div class="large-6 medium-6 cell">
@@ -343,7 +340,7 @@
         </div>
       </section>
 
-      <section id="security_level" class="form-section">
+      <section id="security-level" class="form-section">
         <div class="grid-x grid-padding-x">
           <div class="large-6 medium-6 cell">
             <label>Определен ли уровень защищенности ПНд в информационных системах</label>
@@ -361,7 +358,7 @@
         </div>
       </section>
 
-      <section id="documentation_level" class="form-section">
+      <section id="documentation-level" class="form-section">
         <div class="row">
           <div class="small-12 columns">
             <label for="range_input">Оцените степень документирования процесса защиты ПНд (ИБ и ИТ)</label>
@@ -377,9 +374,14 @@
               }}</output>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <div class="navigation-arrows">
+    </form>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!--       <div class="navigation-arrows">
         <div class="left-arrow">
           <input type="button" value="Назад" (click)="navigate('back')" />
         </div>
